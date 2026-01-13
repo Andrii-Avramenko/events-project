@@ -5,7 +5,7 @@
   "homepage": "https://andrii-avranmenko.github.io/events-project",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-project-template/"
+    "build": "parcel build src/*.html --public-url /event-project/"
   },
   "repository": {
     "type": "git",
