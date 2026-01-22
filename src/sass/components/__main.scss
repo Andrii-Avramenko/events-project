@@ -1,3 +1,7 @@
+.main {
+  background-color: #000;
+}
+
 .event-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -6,6 +10,26 @@
 }
 
 .event-item {
-    width: 196px;
-    border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 128px;
+  gap: 5px;
+  text-align: center;
+  color: #fff;
+  background-color: black;
+
+  img {
+    height: 161px;
+    object-fit: cover;
+    border-radius: 50px 0;
+  }
+}
+
+.event-title {
+  color: $accent-color;
+  font-weight: 700;
+}
+
+.event-location {
+  font-weight: 600;
 }

@@ -1,0 +1,51 @@
+.hero, .hero-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.hero {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 304px;
+    background-color: #aea9a9;
+}
+
+.hero-title {
+    color: $accent-color;
+    font-weight: 700;
+}
+
+#hero-search, .input-countries {
+    width: 270px;
+    height: 40px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+}
+
+.countries-block{
+    position: absolute;
+    top: 44px;
+    right: 20px;
+    width: 90%;
+    display: none;
+    max-height: 250px;
+    background-color: #aea9a9;
+    overflow: auto;
+
+    @media screen and (min-width: $desktop) {
+      max-height: 270px;
+  }
+}
+
+.countries-block.is-open {
+    display: block;
+}
+
+.country-item{
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+}
