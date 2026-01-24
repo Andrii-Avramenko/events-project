@@ -1,36 +1,46 @@
-import countries from './countries.json'
+import countries from './countries.json';
 
-const countriesInput = document.querySelector('.input-countries')
-const countriesDropdown = document.querySelector('.dropdown-countries')
-const countriesBlock = document.querySelector('.countries-block')
+const countriesInput = document.querySelector('.input-countries');
+const countriesDropdown = document.querySelector('.dropdown-countries');
+const countriesBlock = document.querySelector('.countries-block');
 
-const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json?';
+const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
 const API_KEY = '9RqLQGT6sSDdxR64riYBmSDsAhCzybzg';
 
 const eventsContainer = document.querySelector('.event-container');
 
 function toggleCountriesBlock() {
-  countriesBlock.classList.toggle('is-open')
+  countriesBlock.classList.toggle('is-open');
   if (!countriesBlock.classList.contains('is-open')) return;
   countries.forEach(country => {
     const countryItem = document.createElement('div');
     countryItem.textContent = country.name;
-    countryItem.classList.add('country-item')
+    countryItem.classList.add('country-item');
 
     countryItem.addEventListener('click', () => {
-      countriesInput.value = country.name
-      
-    })
-  })
+      countriesInput.value = country.name;
+    });
+  });
 }
 
-countriesDropdown.addEventListener('click', toggleCountriesBlock)
+countriesDropdown.addEventListener('click', toggleCountriesBlock);
 
-async function getEvents() { 
-  let params = new URLSearchParams()
-  console.log(params)
+async function getEvents() {
+  const params = new URLSearchParams(window.location.search);
+  const allowedParams = {
+    keyword: params.get('keyword'),
+    page: params.get('page'),
+  }
+  let requestParams = '';
+
+  Object.entries(allowedParams).forEach(([key, value]) => {
+    if (!!key && !!value) {
+      requestParams = requestParams + `&${key}=${value}`
+    }
+  });
   try {
-    const response = await fetch(`${BASE_URL}apikey=${API_KEY}&size=20`);
+    console.log(`${BASE_URL}?apikey=${API_KEY}&size=20&${params}`)
+    const response = await fetch(`${BASE_URL}?apikey=${API_KEY}&size=20&${params}`);
     if (!response.ok) {
       throw new Error(`HTTP error ${response.status}`);
     }
