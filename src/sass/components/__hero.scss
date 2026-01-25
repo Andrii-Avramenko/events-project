@@ -1,51 +1,80 @@
-.hero, .hero-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+.hero,
+.hero-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 .hero {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 304px;
-    background-color: #aea9a9;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 304px;
+  background-color: #aea9a9;
 }
 
 .hero-title {
-    color: $accent-color;
-    font-weight: 700;
+  color: $accent-color;
+  font-weight: 700;
+  text-align: center;
+  font-size: 18px;
+  width: 212px;
 }
 
-#hero-search, .input-countries {
-    width: 270px;
-    height: 40px;
-    padding: 10px 30px;
-    border-radius: 20px;
-    border: none;
+#hero-search,
+.input-countries {
+  width: 270px;
+  height: 40px;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: none;
 }
 
-.countries-block{
-    position: absolute;
-    top: 44px;
-    right: 20px;
-    width: 90%;
-    display: none;
-    max-height: 250px;
-    background-color: #aea9a9;
-    overflow: auto;
+.input-countries {
+  position: relative;
+}
 
-    @media screen and (min-width: $desktop) {
-      max-height: 270px;
+.dropdown-countries {
+  position: absolute;
+  right: 30px;
+  top: 15px;
+}
+
+.countries-set {
+  position: relative;
+}
+
+.countries-block {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  display: none;
+  max-height: 100px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #ffffff;
+  overflow: auto;
+  color: #000;
+
+  @media screen and (min-width: $desktop) {
+    max-height: 270px;
   }
 }
 
-.countries-block.is-open {
+.countries-set.is-open {
+  .countries-block {
     display: block;
+  }
+  .input-countries {
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
-.country-item{
-    padding: 5px;
-    cursor: pointer;
-    border: 1px solid black;
+.country-item {
+  padding: 5px 20px;
+  cursor: pointer;
+  border-top: 1px solid black;
 }
