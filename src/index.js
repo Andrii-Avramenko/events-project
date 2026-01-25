@@ -36,7 +36,7 @@ function toggleCountriesBlock(toggle) {
   if (!countriesSet.classList.contains('is-open')) return;
 
   countriesBlock.innerHTML = '';
-  userInput = countriesInput.value;
+  let userInput = countriesInput.value;
 
   countries.forEach(country => {
     if (!country.name.toLowerCase().includes(userInput.toLowerCase())) {
