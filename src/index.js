@@ -1,8 +1,11 @@
 // JSON з країнами
 import countries from './countries.json';
 
+// Функція модального вікна
+import { toggleModal } from './js/modal';
+
 // svg картинка
-import noResultsImg from './images/noResults.svg'
+import noResultsImg from './images/noResults.svg';
 
 // Змінні
 const countriesInput = document.querySelector('.input-countries');
@@ -13,7 +16,7 @@ const countriesSet = document.querySelector('.countries-set');
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
 const API_KEY = '9RqLQGT6sSDdxR64riYBmSDsAhCzybzg';
 
-const mainSection = document.querySelector('.main')
+const mainSection = document.querySelector('.main');
 const eventsContainer = document.querySelector('.event-container');
 
 // Вибір країни
@@ -67,16 +70,16 @@ countriesDropdown.addEventListener('click', () => toggleCountriesBlock(true));
 function noResultsHandler() {
   mainSection.classList.add('no-results');
 
-  const image = document.createElement('img')
-  image.setAttribute('src', noResultsImg)
-  image.setAttribute('width', "200")
+  const image = document.createElement('img');
+  image.setAttribute('src', noResultsImg);
+  image.setAttribute('width', '200');
 
   const message = document.createElement('p');
   message.textContent =
     'Oops! We couldn’t find anything. Try a different search ';
-  
-  mainSection.querySelector('.container').append(image)
-  mainSection.querySelector('.container').append(message)
+
+  mainSection.querySelector('.container').append(image);
+  mainSection.querySelector('.container').append(message);
 }
 // Запит на API
 async function getEvents() {
@@ -105,6 +108,36 @@ function renderEvents(events) {
     .join('');
   eventsContainer.innerHTML = markup;
 }
+
+// 
+async function getEventById(id) {
+  try {
+    const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events/${id}.json?apikey=${API_KEY}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+    const event = await response.json();
+    return event;
+  } catch(error) {
+    console.error(error);
+  }
+}
+
+// Modal
+eventsContainer.addEventListener('click', async e => {
+  const card = e.target.closest('.event-item');
+  if (!card) return;
+  const eventId = card.dataset.id;
+  try {
+    const event = await getEventById(eventId)
+    toggleModal()
+  } 
+  catch(error) {
+    console.error(error)
+  }
+  
+  
+});
 
 // Запуск веб-сайту
 async function startApp() {

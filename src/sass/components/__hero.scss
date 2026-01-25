@@ -29,10 +29,16 @@
   width: 212px;
 }
 
+.hero-inputs {
+  width: 85%;
+  min-width: 190px;
+  max-width: 270px;
+}
+
 #search-input,
 .input-countries {
   position: relative;
-  width: 270px;
+  width: 100%;
   height: 40px;
   padding: 10px 30px;
   border-radius: 20px;
@@ -46,7 +52,8 @@
   top: 15px;
 }
 
-.countries-set, .search-form {
+.countries-set,
+.search-form {
   position: relative;
 }
 

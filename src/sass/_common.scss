@@ -1,19 +1,19 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
 .container {
-  max-width: 480px;
+  max-width: $mobile;
   margin-left: auto;
   margin-right: auto;
   padding: 50px 0;
 
 
-  @media screen and (min-width: 768px) {
-    width: 768px;
+  @media screen and (min-width: $tablet) {
+    width: $tablet;
     max-width: 668px;
 
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: $desktop) {
     max-width: none;
     width: 1110px;
   }
