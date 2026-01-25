@@ -1,5 +1,10 @@
+// JSON з країнами
 import countries from './countries.json';
 
+// svg картинка
+import noResultsImg from './images/noResults.svg'
+
+// Змінні
 const countriesInput = document.querySelector('.input-countries');
 const countriesDropdown = document.querySelector('.dropdown-countries');
 const countriesBlock = document.querySelector('.countries-block');
@@ -8,8 +13,10 @@ const countriesSet = document.querySelector('.countries-set');
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
 const API_KEY = '9RqLQGT6sSDdxR64riYBmSDsAhCzybzg';
 
+const mainSection = document.querySelector('.main')
 const eventsContainer = document.querySelector('.event-container');
 
+// Вибір країни
 function handleCountrySelect(e) {
   countriesInput.value = e.target.dataset.name;
 
@@ -56,6 +63,22 @@ function toggleCountriesBlock(toggle) {
 countriesInput.addEventListener('input', () => toggleCountriesBlock(false));
 countriesDropdown.addEventListener('click', () => toggleCountriesBlock(true));
 
+// Обробник помилок з API
+function noResultsHandler() {
+  mainSection.classList.add('no-results');
+
+  const image = document.createElement('img')
+  image.setAttribute('src', noResultsImg)
+  image.setAttribute('width', "200")
+
+  const message = document.createElement('p');
+  message.textContent =
+    'Oops! We couldn’t find anything. Try a different search ';
+  
+  mainSection.querySelector('.container').append(image)
+  mainSection.querySelector('.container').append(message)
+}
+// Запит на API
 async function getEvents() {
   const params = new URLSearchParams(window.location.search);
   try {
@@ -72,6 +95,7 @@ async function getEvents() {
   }
 }
 
+// Рендер результату пошуку
 function renderEvents(events) {
   const markup = events
     .map(event => {
@@ -82,9 +106,13 @@ function renderEvents(events) {
   eventsContainer.innerHTML = markup;
 }
 
+// Запуск веб-сайту
 async function startApp() {
   const events = await getEvents();
-  console.log(events);
+  if (!events._embedded) {
+    noResultsHandler();
+    return;
+  }
   renderEvents(events._embedded.events);
 }
 

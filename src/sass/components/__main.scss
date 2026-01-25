@@ -2,6 +2,19 @@
   background-color: #000;
 }
 
+.main.no-results {
+  img{ 
+    width: 150px;
+    margin: 0 auto 30px;
+  }
+  p {
+    width: 320px;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
 .event-container {
   display: grid;
   grid-template-columns: 1fr;
