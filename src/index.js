@@ -84,6 +84,7 @@ function noResultsHandler() {
 // Запит на API
 async function getEvents() {
   const params = new URLSearchParams(window.location.search);
+  document.querySelector('#search-input').value = params.get('keyword')
   try {
     const response = await fetch(
       `${BASE_URL}?apikey=${API_KEY}&size=20&${params}`
