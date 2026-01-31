@@ -26,23 +26,42 @@
   font-weight: 700;
   text-align: center;
   font-size: 18px;
-  width: 212px;
+  max-width: 212px;
+  letter-spacing: 0;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 353px;
+    font-size: 30px;
+  }
+  @media screen and (min-width: $desktop) {
+    max-width: 588px;
+    font-size: 50px;
+  }
 }
 
 .hero-inputs {
+  display: flex;
+  flex-direction: column;
   width: 85%;
-  min-width: 190px;
   max-width: 270px;
+
+  @media screen and (min-width: $tablet) {
+    flex-direction: row;
+    max-width: 570px;
+    justify-content: center;
+    gap: 30px;
+  }
 }
 
 #search-input,
 .input-countries {
   position: relative;
-  width: 100%;
   height: 40px;
   padding: 10px 30px;
   border-radius: 20px;
   border: none;
+  width: 270px;
+  min-width: 190px;
 }
 
 .dropdown-countries,

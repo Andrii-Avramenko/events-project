@@ -1,0 +1,41 @@
+#footer-pages {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.footer-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background-color: transparent;
+  color: #fff;
+
+  &:focus, &:hover {
+    border: 1px solid $accent-color;
+    border-radius: 0 10px;
+    color: $accent-color;
+  }
+}
+
+.active {
+    border: 1px solid $accent-color;
+    border-radius: 0 10px;
+    color: $accent-color;
+  }
+
+.footer-input {
+  text-align: center;
+  &::placeholder {
+    color: #fff;
+  }
+  &:focus, &:hover {
+    &::placeholder {
+    color: $accent-color;
+  }
+  }
+  
+}

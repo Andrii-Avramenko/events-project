@@ -1,6 +1,19 @@
 <footer class="footer">
-    <div class="container">
-        <div id="footer-pages"></div>
-        <p class="footer-license">© 2021 | All Rights Reserved | Developed with ♥ by GoIT Students</p>
-    </div>
+  <div class="container">
+    <form
+      action=""
+      id="footer-pages"
+      onsubmit="
+        !!this.querySelector('.footer-input').value
+          ? (
+            this.querySelectorAll('button[name=page]').forEach(
+              b => (b.disabled = true)
+            ), this.querySelector('.footer-input').value--)
+          : (this.querySelector('.footer-input').disabled = true)
+      "
+    ></form>
+    <p class="footer-license">
+      © 2021 | All Rights Reserved | Developed with ♥ by GoIT Students
+    </p>
+  </div>
 </footer>

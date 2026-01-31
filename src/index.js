@@ -12,6 +12,7 @@ const countriesInput = document.querySelector('.input-countries');
 const countriesDropdown = document.querySelector('.dropdown-countries');
 const countriesBlock = document.querySelector('.countries-block');
 const countriesSet = document.querySelector('.countries-set');
+const footerPages = document.querySelector('#footer-pages');
 
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
 const API_KEY = '9RqLQGT6sSDdxR64riYBmSDsAhCzybzg';
@@ -84,7 +85,7 @@ function noResultsHandler() {
 // Запит на API
 async function getEvents() {
   const params = new URLSearchParams(window.location.search);
-  document.querySelector('#search-input').value = params.get('keyword')
+  document.querySelector('#search-input').value = params.get('keyword');
   try {
     const response = await fetch(
       `${BASE_URL}?apikey=${API_KEY}&size=20&${params}`
@@ -110,16 +111,88 @@ function renderEvents(events) {
   eventsContainer.innerHTML = markup;
 }
 
-// 
+// Пагінація
+function loadPages() {
+  const params = new URLSearchParams(window.location.search);
+  const activePage = params.has('page') ? Number(params.get('page')) : 0;
+  const pages = [0];
+
+  if (activePage === 0) {
+    pages.push(
+      ...[
+        activePage + 1,
+        activePage + 2,
+        activePage + 3,
+        activePage + 4,
+        'input',
+        50,
+      ]
+    );
+  } else if (activePage >= 47) {
+    pages.push(...[46, 47, 48, 49, 'input', 50]);
+  } else if (activePage > 1) {
+    pages.push(
+      ...[
+        activePage - 1,
+        activePage,
+        activePage + 1,
+        activePage + 2,
+        'input',
+        50,
+      ]
+    );
+  } else {
+    pages.push(
+      ...[
+        activePage,
+        activePage + 1,
+        activePage + 2,
+        activePage + 3,
+        'input',
+        50,
+      ]
+    );
+  }
+
+  pages.forEach(page => {
+    if (page === 'input') {
+      const element = document.createElement('input');
+      element.classList.add('footer-page', 'footer-input');
+      element.setAttribute('placeholder', `...`);
+      element.setAttribute('name', 'page');
+      console.log(element);
+      footerPages.append(element);
+      return;
+    }
+    const element = document.createElement('button');
+    element.textContent = page + 1;
+    element.setAttribute('type', 'submit');
+    element.setAttribute('name', 'page');
+    element.setAttribute('value', `${page}`);
+    element.setAttribute('type', 'number');
+    element.setAttribute('min', '1');
+    element.setAttribute('max', '51');
+    element.classList.add('footer-page');
+    if (page === activePage) element.classList.add('active');
+    console.log(element);
+    footerPages.append(element);
+  });
+
+  console.log(pages);
+}
+
+// Подія по ID
 async function getEventById(id) {
   try {
-    const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events/${id}.json?apikey=${API_KEY}`);
+    const response = await fetch(
+      `https://app.ticketmaster.com/discovery/v2/events/${id}.json?apikey=${API_KEY}`
+    );
     if (!response.ok) {
       throw new Error(`HTTP error ${response.status}`);
     }
     const event = await response.json();
     return event;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
   }
 }
@@ -130,14 +203,11 @@ eventsContainer.addEventListener('click', async e => {
   if (!card) return;
   const eventId = card.dataset.id;
   try {
-    const event = await getEventById(eventId)
-    toggleModal()
-  } 
-  catch(error) {
-    console.error(error)
+    const event = await getEventById(eventId);
+    toggleModal();
+  } catch (error) {
+    console.error(error);
   }
-  
-  
 });
 
 // Запуск веб-сайту
@@ -148,6 +218,7 @@ async function startApp() {
     return;
   }
   renderEvents(events._embedded.events);
+  loadPages();
 }
 
 startApp();
