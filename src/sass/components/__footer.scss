@@ -1,3 +1,7 @@
+.footer .container{
+  padding: 60px 0 27px;
+}
+
 #footer-pages {
   display: flex;
   justify-content: center;
@@ -38,4 +42,10 @@
   }
   }
   
+}
+
+.footer-license {
+  margin-top: 60px;
+  text-align: center;
+  color: $second-color;
 }

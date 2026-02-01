@@ -2,16 +2,22 @@
 .hero-inputs {
   display: flex;
   flex-direction: column;
-  gap: 25px;
 }
 
 .hero {
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 304px;
-  // background-color: #aea9a9;
+  padding: 78px 0 52px;
+
+  @media screen and (min-width: $tablet) {
+    padding: 40px 0 136px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 40px 0 146px;
+  }
 }
+
 .hero-image {
   position: absolute;
   top: 0;
@@ -42,20 +48,27 @@
 .hero-inputs {
   display: flex;
   flex-direction: column;
-  width: 85%;
   max-width: 270px;
+  margin-top: 25px;
+  gap: 25px;
 
   @media screen and (min-width: $tablet) {
     flex-direction: row;
     max-width: 570px;
     justify-content: center;
+    margin-top: 27px;
     gap: 30px;
+  }
+  @media screen and (min-width: $tablet) {
+    margin-top: 52px;
   }
 }
 
 #search-input,
 .input-countries {
   position: relative;
+  display: flex;
+  justify-content: center;
   height: 40px;
   padding: 10px 30px;
   border-radius: 20px;
@@ -69,6 +82,20 @@
   position: absolute;
   right: 30px;
   top: 15px;
+  background: none;
+  padding: 0;
+}
+
+.search-submit svg {
+  width: 12px;
+  height: 12px;
+  fill: $second-color;
+}
+
+.dropdown-countries svg {
+  width: 15px;
+  height: 10px;
+  fill: $second-color;
 }
 
 .countries-set,
