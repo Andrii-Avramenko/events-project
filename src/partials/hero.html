@@ -1,5 +1,20 @@
 <section class="hero">
   <picture class="hero-picture">
+    <source
+      srcset="
+        ./images/hero/hero-bg-desk-1x.jpg 1x,
+        ./images/hero/hero-bg-desk-2x.jpg 2x
+      "
+      media="(min-width: 1200px)"
+    />
+    <source
+      srcset="
+        ./images/hero/hero-bg-tab-1x.jpg 1x,
+        ./images/hero/hero-bg-tab-2x.jpg 2x
+      "
+      media="(min-width: 595px)"
+    />
+
     <img
       srcset="
         ./images/hero/hero-bg-mob-1x.jpg 1x,
@@ -19,9 +34,11 @@
         id="search-input"
         placeholder="Start searching"
       />
-      <button type="submit" class="search-submit"><svg>
+      <button type="submit" class="search-submit">
+        <svg>
           <use href="./images/events-svg.svg#icon-search"></use>
-        </svg></button>
+        </svg>
+      </button>
     </form>
     <div class="countries-set">
       <input

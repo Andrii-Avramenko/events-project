@@ -1,10 +1,6 @@
-.hero,
-.hero-inputs {
+.hero {
   display: flex;
   flex-direction: column;
-}
-
-.hero {
   justify-content: center;
   align-items: center;
   padding: 78px 0 52px;
@@ -14,7 +10,7 @@
   }
 
   @media screen and (min-width: $desktop) {
-    padding: 40px 0 146px;
+    padding: 40px 0 186px;
   }
 }
 
@@ -26,22 +22,29 @@
   object-position: center bottom;
   max-height: 364px;
   z-index: -1;
+  
+  @media screen and (min-width: $desktop) {
+    max-height: 545px;
+  }
 }
 .hero-title {
   color: $accent-color;
-  font-weight: 700;
+  font-weight: 900;
   text-align: center;
   font-size: 18px;
   max-width: 212px;
   letter-spacing: 0;
+  line-height: 22px;
 
   @media screen and (min-width: $tablet) {
     max-width: 353px;
     font-size: 30px;
+    line-height: 37px;
   }
   @media screen and (min-width: $desktop) {
-    max-width: 588px;
+    max-width: 589px;
     font-size: 50px;
+    line-height: 61px;
   }
 }
 
