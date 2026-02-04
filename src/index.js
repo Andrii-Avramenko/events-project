@@ -2,7 +2,7 @@
 import countries from './countries.json';
 
 // Функція модального вікна
-import { toggleModal } from './js/modal';
+import { renderModal, toggleModal } from './js/modal';
 
 // svg картинка
 import noResultsImg from './images/noResults.svg';
@@ -70,25 +70,23 @@ countriesDropdown.addEventListener('click', () => toggleCountriesBlock(true));
 // Обробник помилок з API
 function noResultsHandler() {
   mainSection.classList.add('no-results');
+  
+  const image = document.createElement('img')
+  const text = document.createElement('p')
 
-  const image = document.createElement('img');
-  image.setAttribute('src', noResultsImg);
-  image.setAttribute('width', '200');
+  image.setAttribute('src', noResultsImg)
+  text.insertAdjacentText('afterbegin', "Oops! We couldn't find anything. Try a different search")
 
-  const message = document.createElement('p');
-  message.textContent =
-    'Oops! We couldn’t find anything. Try a different search ';
-
-  mainSection.querySelector('.container').append(image);
-  mainSection.querySelector('.container').append(message);
-}
+  mainSection.append(image)
+  mainSection.append(text)
+} 
 // Запит на API
 async function getEvents() {
   const params = new URLSearchParams(window.location.search);
   document.querySelector('#search-input').value = params.get('keyword');
   try {
     const response = await fetch(
-      `${BASE_URL}?apikey=${API_KEY}&size=20&${params}`
+      `${BASE_URL}?apikey=${API_KEY}&${params}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error ${response.status}`);
@@ -108,7 +106,7 @@ function renderEvents(events) {
                 <p class="event-title">${event.name}</p><p class="event-date">${event.dates.start.localDate}</p><p class="event-location">${event._embedded.venues[0].name}</p></li>`;
     })
     .join('');
-  eventsContainer.innerHTML = markup;
+  eventsContainer.insertAdjacentHTML("afterbegin", markup);
 }
 
 // Пагінація
@@ -156,26 +154,14 @@ function loadPages() {
 
   pages.forEach(page => {
     if (page === 'input') {
-      const element = document.createElement('input');
-      element.classList.add('footer-page', 'footer-input');
-      element.setAttribute('placeholder', `...`);
-      element.setAttribute('name', 'page');
-      console.log(element);
-      footerPages.append(element);
+      const markup = `<input name="page" class="footer-page footer-input" placeholder="...">`
+      footerPages.insertAdjacentHTML("beforeend", markup);
       return;
     }
-    const element = document.createElement('button');
-    element.textContent = page + 1;
-    element.setAttribute('type', 'submit');
-    element.setAttribute('name', 'page');
-    element.setAttribute('value', `${page}`);
-    element.setAttribute('type', 'number');
-    element.setAttribute('min', '1');
-    element.setAttribute('max', '51');
-    element.classList.add('footer-page');
-    if (page === activePage) element.classList.add('active');
-    console.log(element);
-    footerPages.append(element);
+    buttonClasses = "footer-page"
+    if (page === activePage) buttonClasses = buttonClasses + " active";
+    const markup = `<button type="number" name="page" value="${page}" min="1" max="51" class="${buttonClasses}" placeholder="...">${page + 1}</button>`
+    footerPages.insertAdjacentHTML("beforeend", markup);
   });
 
   console.log(pages);
@@ -205,6 +191,7 @@ eventsContainer.addEventListener('click', async e => {
   try {
     const event = await getEventById(eventId);
     toggleModal();
+    renderModal(event)
   } catch (error) {
     console.error(error);
   }

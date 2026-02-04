@@ -62,7 +62,7 @@
     margin-top: 27px;
     gap: 30px;
   }
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: $desktop) {
     margin-top: 52px;
   }
 }
@@ -78,6 +78,11 @@
   border: none;
   width: 270px;
   min-width: 190px;
+  background: none;
+  backdrop-filter: blur(20px);
+  font-size: 16px;
+  font-weight: 400;
+  color: $white-color;
 }
 
 .dropdown-countries,
