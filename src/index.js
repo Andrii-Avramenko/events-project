@@ -7,6 +7,9 @@ import { renderModal, toggleModal } from './js/modal';
 // svg картинка
 import noResultsImg from './images/noResults.svg';
 
+// Флаги країн
+import "../node_modules/flag-icons/css/flag-icons.min.css";
+
 // Змінні
 const countriesInput = document.querySelector('.input-countries');
 const countriesDropdown = document.querySelector('.dropdown-countries');
@@ -52,6 +55,9 @@ function toggleCountriesBlock(toggle) {
     countryItem.setAttribute('data-name', country.name);
     countryItem.setAttribute('data-countrycode', country.countryCode);
     countryItem.classList.add('country-item');
+    countryItem.insertAdjacentHTML('afterbegin', `<span class="fi fi-${country.countryCode.toLowerCase()}"></span>`)
+
+    console.log(countryItem)
 
     countriesBlock.appendChild(countryItem);
   });
