@@ -23,6 +23,26 @@
   }
 }
 
+.hero-logo {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 30px;
+  height: 60px;
+  fill: $white-color;
+  z-index: 1;
+  background-color: blue;
+
+  @media screen and (min-width: $tablet) {
+    width: 50px;
+    height: 100px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 70px;
+    height: 140px;
+  }
+}
+
 .hero-image {
   position: absolute;
   top: 0;
@@ -99,7 +119,7 @@
   backdrop-filter: blur(20px);
   font-size: 16px;
   font-weight: 400;
-  color: $second-color;
+  color: $tertiary-color;
   transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -107,32 +127,27 @@
 .search-submit {
   position: absolute;
   right: 30px;
-  top: 15px;
-  background: none;
+  top: 10px;
+  height: 20px;
   padding: 0;
+  background: none;
 }
 
 .search-submit svg {
   width: 12px;
   height: 12px;
-  fill: $second-color;
+  fill: $tertiary-color;
 }
 
 .dropdown-countries svg {
   width: 15px;
   height: 10px;
-  fill: $second-color;
+  fill: $tertiary-color;
 }
 
 .countries-set,
 .search-form {
   position: relative;
-  border: none;
-  border-radius: 20px;
-
-  &:hover, &:focus {
-    border: solid 1px $white-color;
-  }
 }
 
 .countries-block {
@@ -148,7 +163,7 @@
   background: none;
   backdrop-filter: blur(20px);
   overflow: auto;
-  color: $second-color;
+  color: $tertiary-color;
 
   @media screen and (min-width: $desktop) {
     max-height: 270px;
@@ -161,7 +176,6 @@
 }
 
 .countries-set.is-open {
-  // box-shadow: -2px -2px 16px 3px rgba(255, 255, 255, 0.7);
   .countries-block {
     display: block;
   }
@@ -170,7 +184,6 @@
     border-bottom: none;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    // box-shadow: 0px 0px 16px 3px rgba(255, 255, 255, 0.7);
   }
 }
 

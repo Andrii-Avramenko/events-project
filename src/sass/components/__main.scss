@@ -1,5 +1,10 @@
-.main .container {
-  padding: 0;
+.main {
+  // background-image: url(../images/main-noise.webp);
+  background-size: cover;
+
+  .container {
+    padding: 0;
+  }
 }
 
 .main.no-results {
@@ -48,7 +53,7 @@
     width: 109px;
     height: 101px;
     opacity: 30%;
-    border: 1px solid $accent-color;
+    border: 2px solid $accent-color;
     border-radius: 50px 0;
   }
   img {
