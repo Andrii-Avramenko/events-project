@@ -164,7 +164,7 @@ function loadPages() {
       footerPages.insertAdjacentHTML("beforeend", markup);
       return;
     }
-    const buttonClasses = "footer-page"
+    let buttonClasses = "footer-page"
     if (page === activePage) buttonClasses = buttonClasses + " active";
     const markup = `<button type="number" name="page" value="${page}" min="1" max="51" class="${buttonClasses}" placeholder="...">${page + 1}</button>`
     footerPages.insertAdjacentHTML("beforeend", markup);
