@@ -1,9 +1,11 @@
 .main {
-  // background-image: url(../images/main-noise.webp);
+  background-image: url('../images/noise-body.webp');
   background-size: cover;
 
   .container {
     padding: 0;
+    border-right: 1px solid #212121;
+    border-left: 1px solid #212121;
   }
 }
 
