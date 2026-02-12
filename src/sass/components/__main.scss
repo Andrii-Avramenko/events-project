@@ -9,7 +9,7 @@
 
 .main.no-results {
   img {
-    width: 150px;
+    width: 200px;
     margin: 0 auto 30px;
   }
   p {
@@ -17,6 +17,7 @@
     font-size: 18px;
     text-align: center;
     margin: 0 auto;
+    color: $white-color;
   }
 }
 
@@ -42,7 +43,7 @@
   width: 128px;
   gap: 5px;
   text-align: center;
-  color: #fff;
+  color: $white-color;
   cursor: pointer;
 
   &::before {
@@ -82,5 +83,13 @@
 }
 
 .event-location {
+  font-size: 14px;
   font-weight: 600;
+  
+  svg {
+    width: 7px;
+    height: 10px;
+    margin-right: 3px;
+    fill: $white-color;
+  }
 }

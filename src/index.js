@@ -6,6 +6,7 @@ import { renderModal, toggleModal } from './js/modal';
 
 // svg картинка
 import noResultsImg from './images/noResults.svg';
+import iconLocation from './images/events-svg.svg';
 
 // Флаги країн
 import "../node_modules/flag-icons/css/flag-icons.min.css";
@@ -57,10 +58,12 @@ function toggleCountriesBlock(toggle) {
     countryItem.classList.add('country-item');
     countryItem.insertAdjacentHTML('afterbegin', `<span class="fi fi-${country.countryCode.toLowerCase()}"></span>`)
 
-    console.log(countryItem)
-
     countriesBlock.appendChild(countryItem);
   });
+
+  if (!countriesBlock.innerHTML) {
+    countriesSet.classList.remove('is-open');
+  }
 
   if (!countriesBlock.hasAttribute('listener')) {
     countriesBlock.setAttribute('listener', '');
@@ -109,7 +112,7 @@ function renderEvents(events) {
   const markup = events
     .map(event => {
       return `<li class="event-item" data-id="${event.id}"><img src="${event.images[3].url}" class="event-image"/>
-                <p class="event-title">${event.name}</p><p class="event-date">${event.dates.start.localDate}</p><p class="event-location">${event._embedded.venues[0].name}</p></li>`;
+                <p class="event-title">${event.name}</p><p class="event-date">${event.dates.start.localDate}</p><p class="event-location"><svg class="event-location-svg"><use href="${iconLocation}#icon-location"></use></svg>${event._embedded.venues[0].name}</p></li>`;
     })
     .join('');
   eventsContainer.insertAdjacentHTML("afterbegin", markup);

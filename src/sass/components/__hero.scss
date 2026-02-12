@@ -102,7 +102,18 @@
   z-index: 1;
 }
 
+.countries-set,
+.search-form {
+  position: relative;
 
+  &:hover,
+  &:focus {
+    #search-input,
+    .input-countries {
+      border-color: white;
+    }
+  }
+}
 
 #search-input,
 .input-countries {
@@ -112,7 +123,7 @@
   height: 40px;
   padding: 10px 30px;
   border-radius: 20px;
-  border: none;
+  border: 1px solid transparent;
   width: 270px;
   min-width: 190px;
   background: none;
@@ -120,7 +131,9 @@
   font-size: 16px;
   font-weight: 400;
   color: $tertiary-color;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown-countries,
@@ -145,29 +158,24 @@
   fill: $tertiary-color;
 }
 
-.countries-set,
-.search-form {
-  position: relative;
-}
-
 .countries-block {
   position: absolute;
   top: 100%;
   right: 0;
   width: 100%;
-  display: none;
-  max-height: 100px;
+  max-height: 0px;
+  opacity: 0;
   border: 1px solid $white-color;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 20px;
+  scroll-behavior: smooth;
   background: none;
   backdrop-filter: blur(20px);
   overflow: auto;
   color: $tertiary-color;
-
-  @media screen and (min-width: $desktop) {
-    max-height: 270px;
-  }
+  transition:
+    max-height 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fi {
@@ -177,10 +185,19 @@
 
 .countries-set.is-open {
   .countries-block {
-    display: block;
+    max-height: 100px;
+    opacity: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    @media screen and (min-width: $desktop) {
+      max-height: 270px;
+    }
   }
   .input-countries {
-    border: 1px solid $white-color;
+    border-color: $white-color;
     border-bottom: none;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;

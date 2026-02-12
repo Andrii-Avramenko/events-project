@@ -1,4 +1,4 @@
-.footer .container{
+.footer .container {
   padding: 60px 0 27px;
 }
 
@@ -14,38 +14,51 @@
   align-items: center;
   width: 30px;
   height: 30px;
-  border: 0;
+  border: 1px solid transparent;
+  border-radius: 0 10px;
   background-color: transparent;
-  color: #fff;
+  color: $white-color;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:focus, &:hover {
-    border: 1px solid $accent-color;
-    border-radius: 0 10px;
+  &:focus,
+  &:hover {
+    border-color: $accent-color;
     color: $accent-color;
   }
 }
 
 .active {
-    border: 1px solid $accent-color;
-    border-radius: 0 10px;
-    color: $accent-color;
-  }
+  border: 1px solid $accent-color;
+  border-radius: 0 10px;
+  color: $accent-color;
+}
 
 .footer-input {
   text-align: center;
   &::placeholder {
-    color: #fff;
+    color: $white-color;
   }
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     &::placeholder {
-    color: $accent-color;
+      color: $accent-color;
+    }
   }
-  }
-  
 }
 
 .footer-license {
   margin-top: 60px;
   text-align: center;
   color: $tertiary-color;
+
+  .heart {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="24" x="8" font-size="16" fill="%23DC56C5">❤</text></svg>') 16 16, pointer;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    .heart {
+      color: #f00;
+    }
+  }
 }
